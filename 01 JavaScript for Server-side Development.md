@@ -189,9 +189,9 @@ Arrow functions make our code more concise and simplify function scoping. With a
 For example,
 ```js
 // Without arrow function
-    function callWife() {
-        return 'Make me a sandwich!'
-    }
+function callWife() {
+    return 'Make me a sandwich!'
+}
 
 // With arrow function
 const callWife = () => 'Make me a sandwich!'

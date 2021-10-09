@@ -31,6 +31,7 @@ For example,
 function greet(name) {
     console.log(`Hello, ${name}!`);
 };
+
 console.log(greet('Joe'));
 ```
 would output:
@@ -55,6 +56,7 @@ For example,
 const anonFunc = function() { //functions without names are anonymous functions
     return 'I am an anonymous function!';
 };
+
 console.log(anonFunc());
 ```
 

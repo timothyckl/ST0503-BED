@@ -50,6 +50,7 @@ console.log(“Add 2 + 3=”+formula.addFn(2,3));
 ```
 
 If we have multiple functions, it is best to declare them in an object and export:
+
 ```js    
 // formula.js
 module.exports = {
@@ -65,8 +66,7 @@ console.log(formula.addFn(2, 3))
 ```
 
 ### require()
-
-When importing a module with require(), Node runs the destination JS file in a new scope and returns what was the final value for module.exports in that file.
+The ```require()``` function can be used to import modules in other files. When importing a module with require(), Node runs the destination JS file in a new scope and returns what was the final value for module.exports in that file.
 
 > __Note:__ module.exports is already defined to be a new empty object in every file. That is, module.exports = {} is implicitly present. By default, every module exports an empty object, in other words, {}.
 

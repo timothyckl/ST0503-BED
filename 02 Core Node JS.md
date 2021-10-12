@@ -24,7 +24,7 @@ Syntax:
 // formula.js
 multiplyFunct = (x, y) => x * y;
 
-module.exports=multiplyFunct
+module.exports = multiplyFunct
 
 // main.js
 const mulFn = require('./formula');
@@ -45,8 +45,8 @@ module.exports.addFn=addFunct;
 // main.js
 const formula = require('./formula');
 
-console.log(“Multiply 2 x 3=”+formula.mulFn(2,3));
-console.log(“Add 2 + 3=”+formula.addFn(2,3));
+console.log(“Multiply 2 x 3 = ”+formula.mulFn(2,3));
+console.log(“Add 2 + 3 = ”+formula.addFn(2,3));
 ```
 
 If we have multiple functions, it is best to declare them in an object and export:

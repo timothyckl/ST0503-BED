@@ -79,30 +79,28 @@ Assuming the multiply function contains a “complex” I/O asynchronous operati
 ```js    
 // formula.js
 module.exports = {
-    formula: {
-        mulFn: (x, y, callback) => {
-            if ((x || y) == Infinity) {
-                setTimeout(() => {
-                    callback(new Error('Input values cannot be infinity!'),
+    mulFn: (x, y, callback) => {
+        if ((x || y) == Infinity) {
+            setTimeout(() => {
+                callback(new Error('Input values cannot be infinity!'),
                     null);
-                }, 2000);
-            } else {
-                setTimeout(() => {
-                    callback(null, x * y);
-                }, 2000);
-            }
-        },
-        addFn: (x, y, callback) => {
-            if ((x || y) == Infinity) {
-                setTimeout(() => {
-                    callback(new Error('Input values cannot be infinity!'),
+            }, 2000);
+        } else {
+            setTimeout(() => {
+                callback(null, x * y);
+            }, 2000);
+        }
+    },
+    addFn: (x, y, callback) => {
+        if ((x || y) == Infinity) {
+            setTimeout(() => {
+                callback(new Error('Input values cannot be infinity!'),
                     null);
-                }, 2000);
-            } else {
-                setTimeout(() => {
-                    callback(null, x + y);
-                }, 2000);
-            }
+            }, 2000);
+        } else {
+            setTimeout(() => {
+                callback(null, x + y);
+            }, 2000);
         }
     }
 }

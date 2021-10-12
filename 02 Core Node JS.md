@@ -1,4 +1,4 @@
-# 02 Core Node JS
+02 Core Node JS
 
 ## Table of Contents
 

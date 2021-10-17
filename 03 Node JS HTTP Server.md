@@ -2,12 +2,13 @@
 
 ## Table of Contents
 
-1. [HTTP](##)
+1. HTTP
     - Request Methods & Structure
     - Response Structure & Code
-2. [JSON](##)
+2. JSON
 3. Creating a Node Server
     - HTTP, Path & File Modules
+    - HTTP Server Setup
 
 ## HTTP
 
@@ -108,7 +109,7 @@ The path module allows tocheck if a file exists or examine more details about a 
 
 It also has function which will allow us to convert a relative path into an absolute for a file. 
 
-## Setup HTTP Server
+## HTTP Server Setup
 
 Create a directory called "public" in your working directory. 
 It should follow a similar hierarchy:

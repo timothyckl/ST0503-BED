@@ -1,4 +1,4 @@
-# 03 HTTP Server w/ Node
+03 HTTP Server w/ Node
 
 ## Table of Contents
 

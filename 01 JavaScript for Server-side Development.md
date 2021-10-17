@@ -2,11 +2,11 @@
 
 ## __Table of Contents__
 
-1. [Functions](##Functions)
+1. Functions
     - First Class Function
     - Higher-Order Function
     - Closures
-2. [JavaScript & Callbacks](##JavaScript-&-Callbacks)
+2. JavaScript & Callbacks
     - Error Handling w/ Callbacks
     - Arrow Functions
 

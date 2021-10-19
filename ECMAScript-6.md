@@ -105,11 +105,11 @@ const courseInfo = {
 
 courseInfo[id] = 6969; // adds Symbol() property to object
 console.log(courseInfo); // {
-                                title: 'JavaScript',
-                                topics: ['strings', 'arrays', 'objects'],
-                                id: 'js-course',
-                                Symbol(): 6969
-                            }
+                         //     title: 'JavaScript',
+                         //     topics: ['strings', 'arrays', 'objects'],
+                         //     id: 'js-course',
+                         //     Symbol(): 6969
+                         // }
 ```
 
 ## Map Object

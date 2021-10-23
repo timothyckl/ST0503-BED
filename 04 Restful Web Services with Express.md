@@ -95,6 +95,7 @@ The response object can be used to:
 Here are some use cases:
 
 ```js    
+// server.js
 app.use(function(req, res, next) {
     console.log(req.url);
     console.log(req.method)
@@ -118,22 +119,98 @@ __What Are RESTful Web Services?__
 Representational State Transfer (REST) is an architectural style that specifies constraints
 such as:
 
-- a
-- b 
-- c
-- d
+- Uniform Interface - Induce desirable properties
+    - Performance
+    - Scalability
+    - Modifiability
+- Resource Accessibility
+    - Uniform Resource Identifiers (URI)
+    - Uniform Resource Locator (URL)
+- Stateless Communication Protocol between Client/Server
+    - HTTP 
+- Standardized Resource Representation
+    - JSON 
+    - HTML
+    -  XML
+    -  plain text
+    -  PDF
+    -  JPEG
 
 
 ### RESTful Principles
 
 - __Resource identification through URI__
-    - amongus
+    - A RESTful web service exposes a set of resources that identify the targets of the interaction with its clients. 
+    - Resources are identified by URIs, which provide a global addressing space for resource and service discovery.
 - __Uniform interface__
-    - amongus
+    - Resources are manipulated using Create, Read, Update, Delete (CRUD) operations: PUT, GET, POST, and DELETE. 
 - __Self-descriptive messages__
-    - amongus
+    - Resources are decoupled from their representation so that their content can be accessed in a variety of formats.
 - __Stateless interactions__
-    - amongus
+    - Interactions with resources are stateless/self-contained.
+    - Stateful interactions are based on the concept of explicit state transfer.
+    - Several techniques exchange state
+        - URI rewriting
+        - cookies
+        - hidden form fields
+    -  State can be embedded in response messages to point to valid future states of the interaction. 
+ 
+### HTTP Methods
+
+|Method|Operation performed|Quality|
+|-|-|-|
+|GET|Read a resource|Safe|
+|PUT|Insert a new resource __OR__ update if the resource already exists.|Idempotent|
+|POST|Insert a new resource. Also can be used to update an existing resource.|N/A|
+|DELETE|Delete a resource|Idempotent|
+
+Reference: [HTTP methods: Idempotency and Safety](https://www.mscharhag.com/api-design/http-idempotent-safe)
 
 ### PUT vs POST
 
+Key differences between PUT and POST is that PUT is idempotent while POST is not. 
+PUT requests do not change a servers state.
+PUT requests must always specify the complete URI of the resource
+POST requests create new resources and updates if it already exists.
+
+## Express Routes
+
+Express allows for simply coded middleware with `app.VERB(route, callback)` adding to the middleware chain.
+Middleware is only executed when HTTP verb and routes from the client request __match__.
+The `app.all()` function can be used to route all types of HTTP request.
+
+Reference: [Express.js | app.all() Function](https://www.geeksforgeeks.org/express-js-app-all-function/)
+
+Create the route for api/user and a new file server.js:
+
+```js
+// server.js
+var express = require('express');
+var bodyParser = require('body-parser');
+var port = 8081; //use another port 8081 for this exercise
+var hostname = "localhost";
+
+var app = express();
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(urlencodedParser);//attach body-parser middleware
+app.use(bodyParser.json());//parse json data
+
+//VERB + URL 
+app.get('/api/user', function (req, res) {
+
+   res.status(200);
+   res.type(".html");
+   res.end("Data of all users sent!");
+
+});
+
+app.listen(port, hostname, () => {
+    console.log(`Server started and accessible via http://${hostname}:${port}/`);
+  });
+```
+
+Run the server with `node server.js`
+
+## Web Service Testing w/ POSTMAN
+#

@@ -168,10 +168,12 @@ Reference: [HTTP methods: Idempotency and Safety](https://www.mscharhag.com/api-
 
 ### PUT vs POST
 
-Key differences between PUT and POST is that PUT is idempotent while POST is not. 
-PUT requests do not change a servers state.
-PUT requests must always specify the complete URI of the resource
-POST requests create new resources and updates if it already exists.
+|Request|Operation|
+|-|-|
+| PUT http://.../User/1 | Insert a new user with Userid=1 if it does not already exist, or else update the existing resource |
+| POST http://.../User/ | Insert a new person every time this request is made and generate a new Userid. |
+| POST http://.../User/1 | Update the existing person where Userid=1 |
+
 
 ## Express Routes
 

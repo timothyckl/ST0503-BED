@@ -160,7 +160,7 @@ such as:
 |Method|Operation performed|Quality|
 |-|-|-|
 |GET|Read a resource|Safe|
-|PUT|Insert a new resource __OR__ update if the resource already exists.|Idempotent|
+|PUT|Update if the resource already exists|Idempotent|
 |POST|Insert a new resource. Also can be used to update an existing resource.|N/A|
 |DELETE|Delete a resource|Idempotent|
 

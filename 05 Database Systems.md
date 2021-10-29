@@ -1,0 +1,136 @@
+05 Database Systems
+
+## Table of Contents
+
+1. Databases
+    - DBMS
+    - Basic Concepts
+2. Relational Model
+    - Relation
+    - Attribute
+    - Creating a Relational DB
+3. MySQL Data Types
+4. SQL
+5. Database Operations
+
+## Databases
+
+Database refers to an organized collection of structured data to ensure it is easily accessible, managed and update.
+
+An analogy would be the library. The library contains a huge collection of books, ranging of different genres. Here the library represents the database and the books are the data.
+
+### Database Management System (DMBS)
+
+DBMS refers to the computer software/ programs used to Manage (create, update or delete), Protect, and Control the access of the data in a database.
+
+Commonly known relational DBMSs are Oracle, MS SQL and DB2.
+
+### Basic Concepts
+
+filler.... #
+
+## Relational Model
+
+Let's use Facebook registration as a guide to explore how information are stored within a database.
+
+![](https://i.imgur.com/p0os9Nb.png)
+
+Say you are new to Facebook and you are signing up for an account. After filling up the necessary information, your information will be captured and reflected in the following format:
+
+|First_Name|Surname|Email_Address|Password|DOB|Gender|
+|-|-|-|-|-|-|
+|Anna|Lee|Anna_lee@hmail.com|deez420|27/11/1998|Female|
+
+### Relation
+
+The information captured above would be stored in a table format, otherwise known as a relation which represents a two-dimensional table. **Each relation has a name that is representative of the data it captures.** In our case, the above relation could be known as the "User" relation.
+
+### Attribute
+
+Attribute refers to the column name in a table. It **defines the characteristic of the object** and in our case, the "User" relation have 6 attributes that helps define an user which are:
+
+- "First Name"
+- "Surname"
+- "Email"
+- "Password"
+- "DOB" (Date of Birth)
+- "Gender"
+
+Now, we shall populate a few more rows of user information to simulate an actual table.
+
+|First_Name|Surname|Email_Address|Password|DOB|Gender|
+|-|-|-|-|-|-|
+|Anna|Lee|Anna_lee@hmail.com|deez420|27/11/1998|Female|
+|Brandon|Ong|Brandomong@gmail.com|99kthkx|14/06/1996|Male|
+|Celine|Tan|Celine_tan92@imail.com|Qwerty69|22/09/1992|Female|
+|Dion|Ng|Diondiondion@jmail.com|PiakPiak1|02/02/1996|Male|
+    
+### Creating a Relational Database
+
+Key points:
+
+1. Name of relation **MUST** be unique
+    - There will be multiple relations created in a database so
+        you **cannot** create another relation in the same database
+        by the same name.
+2. Cells **MUST** be single-valued
+    - Cells **cannot** have multiple values, 
+        in other words 1 cell can only fit 1 value.
+3. Attribute names **MUST** be unique
+    - You **cannot** have 2 attribute names by the same name.
+3. Each tuple/row in a relation is unique
+    - You **cannot** have 2 or more rows of the exact same values.
+
+### Self-Check Quiz
+
+|First_Name|First_Name|Email_Address|Password|DOB|Gender|
+|-|-|-|-|-|-|
+|Anna|Lee|Anna_lee@hmail.com|deez420|27/11/1998|Female|
+|Brandon|Ong|Brandomong@gmail.com|99kthkx|14/06/1996|Male|
+|Celine|Tan|Celine_tan92@imail.com|Qwerty69|22/09/1992|Female|
+|Dion|Ng|Diondiondion@jmail.com|PiakPiak1|**NULL**|Male|
+
+> **Note:** NULL is a special value allowed in a relational database and the value is UNKNOWN or NOT APPLICABLE. 
+> 
+> In this case, "DOB" is an optional field and Dion does not want to provide his Date of Birth, hence "NULL" is used to replace the cell's value.
+
+<br>
+
+<details>
+<summary>
+    Based on the above relation, which of the rule(s) have been violated?
+    <br><br>
+    &nbsp;&nbsp;&nbsp; 1. Name of relation is unique within a database <br>
+    &nbsp;&nbsp;&nbsp; 2. Every cells must be single-valued <br>
+    &nbsp;&nbsp;&nbsp; 3. Attribute name in a relation must be unique <br>
+    &nbsp;&nbsp;&nbsp; 4. Each tuple/row in a relation is unique <br>
+</summary>
+
+<br>
+Answer:<br>
+&nbsp;&nbsp;&nbsp; 3. Attribute name in a relation must be unique <br>
+&nbsp;&nbsp;&nbsp; 4. Each tuple/row in a relation is unique <br>
+</details>
+
+## Types of Keys in Relational Model
+
+In a database, we often identify "keys" to help **establish and identify relationships between tables** as well as to **uniquely identify any record or row of data** inside a table.
+
+### Candidate Key
+
+Candidate key refers to an **attribute** or a **minimal group** of attributes which can uniquely identify a tuple (record) in a relation. 
+
+|First_Name|Surname|Email_Address|Password|DOB|Gender|
+|-|-|-|-|-|-|
+|Linda|See|lindaS@gmail.com|abc123|19/10/2000|Female|
+|David|Lee|davidL@gmail.com|def456|09/01/2001|Male|
+|Nick|Lim|nickL@gmail.com|uvw987|09/01/2001|Male|
+|Linda|Lee|lindaL@gmail.com|a1b2c3|01/03/2001|Female|
+
+From the above relation, "__Email_Address__" (an attribute) can uniquely identify a user tuple (record) hence it is a __candidate key__.
+
+"First_Name" is not a candidate key as there could be more than 1 person with the same first name, as seen from above where there are multiple "Linda"s under the "First_Name" attribute.
+
+Grouped attributes can be used to form candidate keys. So "__First_Name__" and "__Surname__" can be grouped together to uniquely identify an user record.
+
+> __Note:__ In reality, some may argue that there could be people with the exact same first name and surname, so we can either group more attributes together or simply use the email address (since there are no duplicate email).

@@ -2,16 +2,22 @@
 
 ## Table of Contents
 
-1. Databases
+1. [Databases](#databases)
     - DBMS
     - Basic Concepts
 2. Relational Model
     - Relation
     - Attribute
     - Creating a Relational DB
-3. MySQL Data Types
-4. SQL
-5. Database Operations
+    - Self-Check Quiz
+3. Types of Keys
+    - Candidate Key
+    - Self-Check Quiz
+    - Primary Key
+    - Foreign Key
+4. [MySQL Data Types](#mysql-data-types)
+5. SQL
+6. Database Operations
 
 ## Databases
 
@@ -27,7 +33,7 @@ Commonly known relational DBMSs are Oracle, MS SQL and DB2.
 
 ### Basic Concepts
 
-filler.... #
+TBD
 
 ## Relational Model
 
@@ -100,16 +106,16 @@ Key points:
 <summary>
     Based on the above relation, which of the rule(s) have been violated?
     <br><br>
-    &nbsp;&nbsp;&nbsp; 1. Name of relation is unique within a database <br>
-    &nbsp;&nbsp;&nbsp; 2. Every cells must be single-valued <br>
-    &nbsp;&nbsp;&nbsp; 3. Attribute name in a relation must be unique <br>
-    &nbsp;&nbsp;&nbsp; 4. Each tuple/row in a relation is unique <br>
+    &nbsp;&nbsp;&nbsp; 1) Name of relation is unique within a database <br>
+    &nbsp;&nbsp;&nbsp; 2) Every cells must be single-valued <br>
+    &nbsp;&nbsp;&nbsp; 3) Attribute name in a relation must be unique <br>
+    &nbsp;&nbsp;&nbsp; 4) Each tuple/row in a relation is unique <br>
 </summary>
 
 <br>
 Answer:<br>
-&nbsp;&nbsp;&nbsp; 3. Attribute name in a relation must be unique <br>
-&nbsp;&nbsp;&nbsp; 4. Each tuple/row in a relation is unique <br>
+&nbsp;&nbsp;&nbsp; 3) Attribute name in a relation must be unique <br>
+&nbsp;&nbsp;&nbsp; 4) Each tuple/row in a relation is unique <br>
 </details>
 
 ## Types of Keys in Relational Model
@@ -134,3 +140,69 @@ From the above relation, "__Email_Address__" (an attribute) can uniquely identif
 Grouped attributes can be used to form candidate keys. So "__First_Name__" and "__Surname__" can be grouped together to uniquely identify an user record.
 
 > __Note:__ In reality, some may argue that there could be people with the exact same first name and surname, so we can either group more attributes together or simply use the email address (since there are no duplicate email).
+
+### Self-Check Quiz
+
+<details>
+<summary>
+    Based on the above relation, which of the following attribute(s) can be a candidate key?
+    <br><br>
+    &nbsp;&nbsp;&nbsp; 1) Email_Address
+    <br>
+    &nbsp;&nbsp;&nbsp; 2) DOB
+    <br>
+    &nbsp;&nbsp;&nbsp; 3) Gender
+    <br>
+    &nbsp;&nbsp;&nbsp; 4) First_Name + Surname
+    <br>
+    &nbsp;&nbsp;&nbsp; 5) First_Name
+    <br>
+    &nbsp;&nbsp;&nbsp; 6) Password
+</summary>
+<br>
+Answer:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;1) Email_Address <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;4) First_Name + Surname <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;6) Password <br>
+</details>
+
+### Primary Key
+
+We don't actually need so many identifiers to form relations. Instead, we can __choose one of the most suitable candidate key be the official identifier__ of a relation and this is known as the **Primary key**.
+
+Essentially, candidate keys refer to an attribute or group of attributes in a relation that uniquely identify every row. 
+
+There can be __more than one candidate key__ in a relation, out of which __one__ is chosen as the primary key. 
+
+> __Note:__ No primary key value can be NULL.
+
+### Foreign Key
+
+Foreign key refers to an **attribute** or a group of attributes with a relation that **matches** the **value** of the **primary key** or the **candidate key** of the **home** or **other relation**.
+
+In short, it is an attribute(s) that __creates a relationship between two__. 
+
+User Relation:
+
+|First_Name|Surname|Email_Address|Password|DOB|Gender|
+|-|-|-|-|-|-|
+|Linda|See|lindaS@gmail.com|abc123|19/10/2000|Female|
+|David|Lee|davidL@gmail.com|def456|10/04/2001|Male|
+|Nick|Lim|nickL@gmail.com|uvw987|01/01/2002|Male|
+
+Based on the User relation, since "Email_Address" can uniquely identify an user record, we will assign it as the primary key.
+
+Email|Role|Date_Joined|
+|-|-|-|
+|davidL@gmail.com|User|06/09/2022|
+|lindaS@gmail.com|User|28/04/2023|
+|nickL@gmail.com|Admin|09/12/2023|
+
+In the Role relation, "__Email__" would be the __primary key__. In addition, "__Email__" of the Role relation is the __foreign key__ referencing the primary key in the User relation.
+
+> __Note:__ The **attribute name** for the primary and foreign key **need not be the same**. However, the **respective values must match**.
+
+
+## MySQL Data Types
+
+TBD

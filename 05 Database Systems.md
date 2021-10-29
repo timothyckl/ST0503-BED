@@ -8,7 +8,7 @@
 2. [Relational Model](#relational-model)
     - Relation
     - Attribute
-    - Creating a Relational DB
+    - Rules for Creating Relational DBs
     - Self-Check Quiz
 3. [Types of Keys](#types-of-keys-in-relational-model)
     - Candidate Key
@@ -16,7 +16,10 @@
     - Primary Key
     - Foreign Key
 4. [MySQL Data Types](#mysql-data-types)
-5. SQL
+5. [Structured Query Language](#structured-query-language)
+    - Design & Create a Table
+    - Delete a Table
+    - DB Queries
 6. Database Operations
 
 ## Databases
@@ -71,7 +74,7 @@ Now, we shall populate a few more rows of user information to simulate an actual
 |Celine|Tan|Celine_tan92@imail.com|Qwerty69|22/09/1992|Female|
 |Dion|Ng|Diondiondion@jmail.com|PiakPiak1|02/02/1996|Male|
     
-### Creating a Relational Database
+### Rules for Creating Relational DBs
 
 Key points:
 
@@ -205,4 +208,73 @@ In the Role relation, "__Email__" would be the __primary key__. In addition, "__
 
 ## MySQL Data Types
 
-TBD
+Common attribute data types are:
+
+|Data Type|Description|
+|-|-|
+|Integer|Whole number|
+|Smallint|Whole number, ranging from -32676 to 32676|
+|Decimal`(size,d)`|An exact fixed-point number. (size = total number of digits, d = number of digits after the decimal point)|
+|Char`(size)`|A __FIXED__ length string that can contain letters, numbers, and special characters. (size = the column length in characters, from 0 to 255)|
+|varchar`(size)`|A __VARIABLE__ length string that can contain letters, numbers, and special characters. (size = the maximum column length in characters, from 0 to 65535)|
+|Date|A date in the format of YYYY-MM-DD|
+
+## Structured Query Language
+
+SQL, a computing language to communicate with DBMS for operations such as:
+
+- Create 
+- Store
+- Manipulate
+- Retrieve data 
+ 
+It's the standard language for a relational database.
+
+### Design & Create a Table
+
+__Step 1:__ Identify Data Types 
+- Determine which data type for each column.
+
+|Column Name|Data Type|Null Constraint|
+|-|-|-|
+|Title|Char(2)|NOT NULL|
+|First_name|Varchar(20)|NOT NULL|
+|Last_name|Varchar(20)|NOT NULL|
+|__Email (Pri Key)__|__Varchar(50)__|__NOT NULL__|
+|Password|Char(8)|NOT NULL|
+|DOB|Date|NOT NULL|
+
+__Step 2:__ Understand the Syntax
+
+Syntax:
+
+> `CREATE TABLE <table_name> (column_definition_list) PRIMARY KEY (column_name_list)`
+
+__Step 3:__ Create table using SQL Command
+
+```sql    
+CREATE TABLE CUSTOMER 
+(TITLE			CHAR(2)		NOT NULL,
+FIRST_NAME		VARCHAR(20)	NOT NULL,
+LAST_NAME		VARCHAR(20)	NOT NULL,
+EMAIL			VARCHAR(50)	NOT NULL,
+PASSWORD		CHAR(8)		NOT NULL,
+DOB                    DATE		NULL,
+PRIMARY KEY (EMAIL));
+```
+
+### Delete a Table
+
+__Step 1:__ Understand the Syntax
+
+Syntax: 
+
+> `DROP TABLE <table_name>;`
+
+__Step 2:__ Create table using SQL Command
+
+```sql    
+DROP TABLE CUSTOMER;
+```
+
+### DB Queries

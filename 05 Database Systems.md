@@ -246,7 +246,9 @@ __Step 1:__ Identify Data Types
 
 __Step 2:__ Understand the Syntax
 
-Syntax: `CREATE TABLE <table_name> (column_definition_list) PRIMARY KEY (column_name_list)`
+Syntax:
+
+> `CREATE TABLE <table_name> (column_definition_list) PRIMARY KEY (column_name_list)`
 
 __Step 3:__ Create table using SQL Command
 
@@ -265,7 +267,9 @@ PRIMARY KEY (EMAIL));
 
 __Step 1:__ Understand the Syntax
 
-Syntax: `DROP TABLE <table_name>;`
+Syntax: 
+
+> `DROP TABLE <table_name>;`
 
 __Step 2:__ Create table using SQL Command
 
@@ -274,3 +278,59 @@ DROP TABLE CUSTOMER;
 ```
 
 ### DB Queries
+
+We can interact with our database using various SQL query statements.
+
+Address Table
+
+| Address1            | Address2         | Email              | Country   | Postal_Code |
+| ------------------- | ---------------- | ------------------ | --------- | ----------- |
+| Blk 145, Toa Payoh  | Lorong 1, #07-12 | DavidL@gmail.com   | Singapore | 145112      |
+| Blk 123, Ang Mo Kio | Ave 6, #12-12    | LeeD@gmail.com     | Malaysia  | 123121      |
+| 123 Flora Road      | Garden Way       | LSoh@outlook.com   | Singapore | 503984      |
+| 22 Lin Hua Road     | NULL             | LindaS@outlook.com | China     | 345982      |
+
+### Retrieve __ALL__ data:
+> [ ] indicates it is optional and ‘…’ indicates that there maybe multiple pairs of ‘ColumnName = ColumnValue’
+> 
+> Using asterisks (*) selects data in all columns
+
+Syntax: `SELECT <attribute_name> FROM <table_name> [WHERE <condition>]`
+
+```sql
+SELECT * FROM Address;
+```
+
+### Retrieve Data of __CERTAIN__ Criteria:
+
+```sql
+SELECT Email FROM Address WHERE Postal_Code=503984;
+```
+
+### Remove __DUPLICATES__ from Data:
+
+Syntax: `SELECT DISTINCT <attribute_name> FROM <table_name>`
+
+```sql
+SELECT DISTINCT Country from Address;
+```
+
+### Sorting Data:
+
+Syntax: `SELECT <attribute_name> FROM <table_name> ORDER BY <attribute_name> ASC`
+
+> __Note:__ By default, ORDER BY keyword sorts in ascending order (ASC).
+
+```sql
+SELECT Country FROM Address ORDER BY Country DESC;
+```
+
+### Limiting Rows of Data:
+
+Syntax: `SELECT <attribute_name> FROM <table_name> LIMIT <n>`
+
+> __Note:__ Only the __TOP__ n results will be returned
+
+```sql
+SELECT Country FROM Address LIMIT 3;
+```

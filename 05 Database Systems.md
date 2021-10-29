@@ -24,6 +24,7 @@
     - [INSERT](#insert)
     - [UPDATE](#update)
     - [DELETE](#delete)
+    - [Table Joins](#table-joins)
 7. Database Operations
 
 ## Databases
@@ -189,7 +190,7 @@ Foreign key refers to an **attribute** or a group of attributes with a relation 
 
 In short, it is an attribute(s) that __creates a relationship between two__. 
 
-User Relation:
+__User Relation:__
 
 |First_Name|Surname|Email_Address|Password|DOB|Gender|
 |-|-|-|-|-|-|
@@ -285,7 +286,7 @@ DROP TABLE CUSTOMER;
 
 We can interact with our database using various SQL query statements.
 
-Address Table
+__Address Table__
 
 | Address1            | Address2         | Email              | Country   | Postal_Code |
 | ------------------- | ---------------- | ------------------ | --------- | ----------- |
@@ -295,34 +296,34 @@ Address Table
 | 22 Lin Hua Road     | NULL             | LindaS@outlook.com | China     | 345982      |
 
 ### SELECT
-### Retrieve __ALL__ data:
+#### Retrieve __ALL__ data:
 > [ ] indicates it is optional and ‘…’ indicates that there maybe multiple pairs of ‘ColumnName = ColumnValue’
 
 > Using asterisks (*) selects data in all columns
 
-Syntax: `SELECT <attribute_name> FROM <table_name> [WHERE <condition>]`
+Syntax: `SELECT <attribute_name> FROM <table_name> [WHERE <condition>];`
 
 ```sql
 SELECT * FROM Address;
 ```
 
-### Retrieve Data of __CERTAIN__ Criteria:
+#### Retrieve Data of CERTAIN Criteria:
 
 ```sql
 SELECT Email FROM Address WHERE Postal_Code=503984;
 ```
 
-### Remove __DUPLICATES__ from Data:
+#### Remove DUPLICATES from Data:
 
-Syntax: `SELECT DISTINCT <attribute_name> FROM <table_name>`
+Syntax: `SELECT DISTINCT <attribute_name> FROM <table_name>;`
 
 ```sql
 SELECT DISTINCT Country from Address;
 ```
 
-### Sorting Data:
+#### Sorting Data:
 
-Syntax: `SELECT <attribute_name> FROM <table_name> ORDER BY <attribute_name> ASC`
+Syntax: `SELECT <attribute_name> FROM <table_name> ORDER BY <attribute_name> ASC;`
 
 > __Note:__ By default, ORDER BY keyword sorts in ascending order (ASC).
 
@@ -330,9 +331,9 @@ Syntax: `SELECT <attribute_name> FROM <table_name> ORDER BY <attribute_name> ASC
 SELECT Country FROM Address ORDER BY Country DESC;
 ```
 
-### Limiting Rows of Data:
+#### Limiting Rows of Data:
 
-Syntax: `SELECT <attribute_name> FROM <table_name> LIMIT <n>`
+Syntax: `SELECT <attribute_name> FROM <table_name> LIMIT <n>;`
 
 > __Note:__ Only the __TOP__ n results will be returned
 
@@ -342,6 +343,83 @@ SELECT Country FROM Address LIMIT 3;
 
 ### INSERT
 
+#### Insert new row(s) of data
+
+Syntax: `INSERT TO <table_name>(field_list) VALUES (column1,...,columnN);`
+
+```sql    
+INSERT INTO Address( Address1, Address2, Email, Country, Postal_Code )
+VALUES (Blk 89 Joo Kang Road, #02-34, Louise@gmail.com, Japan, 938451);
+```
+
 ### UPDATE
 
+#### Update EXISTING data
+
+Syntax: `UPDATE <table_name> SET <column1 = column1_value> [,column2 = column2_value...] [WHERE <row_selection_condition>];`
+
+```sql    
+UPDATE Address SET Country = Japan 
+WHERE Postal_Code = 145112;
+```
+
 ### DELETE
+
+#### Delete SPECIFIC rows of data
+
+Syntax: `DELETE FROM <table_name> [WHERE <row_selection_condition>];`
+
+```sql    
+DELETE FROM Address WHERE Postal_Code = 123121;
+```
+
+### Table Joins
+
+We may require __data from 2 different tables__ hence we need the JOIN operation to join the table before retrieving the data. 
+
+__User Table__
+
+|Title|First_name|Last_name|Email|Password|DOB|
+|-|-|-|-|-|-|
+|Ms|Linda|See|LindaS@hotmail.com|Abc123|NULL|
+|Mr|David|Lee|DavidL@gmail.com|Da12lee|13/09/2997|
+|Ms|Linda|Soh|LSoh@hotmail.com|Abc123|20/12/1998|
+|Mr|Dawn|Lee|LeeD@gmail.com|Qwerty|12/03/2002|
+
+__Address Table__
+
+|Address1|Address2|Email|Country|Postal_Code|
+|-|-|-|-|-|
+|Blk 145, Toa Payoh|Lorong, #07-12|DavidL@gmail.com|Singapore|145112|
+|Blk 123, Ang Mo Kio|Ave 6, #12-12|LeeD@gmail.com|Malaysia|123131|
+|123 Flora Rd|Garden Way|LSoh@gmail.com|Singapore|503984|
+|22 Lin Hua Rd|NULL|LindaS@hotmail.com|China|345982|
+
+- __Method 1: JOIN Operation__
+
+Syntax: `SELECT <table1.attribute1> [,<tableN.attributeN>...] FROM <table1> <tableN> [WHERE <condition>];`
+
+```sql    
+SELECT User.First_name, User.Last_Name, User.Email, Address.Postal_Code
+FROM User, Address
+WHERE User.Email = Address.Email;
+```
+
+- __Method 2: JOIN Operation - Using Table Alias as Shortcuts__
+
+```sql    
+SELECT u.First_name , u.Last_Name , u.Email , a.Postal_Code
+FROM User u , Address a
+WHERE u.Email = a.Email;
+```
+
+Result:
+
+__Table of Users w/ Respective Postal Code__
+
+|First_name|Last_name|Email|Postal_Code|
+|-|-|-|-|
+|Linda|See|LindaS@hotmail.com|345982|
+|David|Lee|DavidL@gmail.com|145112|
+|Dawn|Lee|LeeD@gmail.com|123121|
+|Linda|Soh|LSoh@hotmail.com|503984|

@@ -19,8 +19,12 @@
 5. [Structured Query Language](#structured-query-language)
     - Design & Create a Table
     - Delete a Table
-    - DB Queries
-6. Database Operations
+6. [DB Queries](#dg-queries)
+    - [SELECT](#select)
+    - [INSERT](#insert)
+    - [UPDATE](#update)
+    - [DELETE](#delete)
+7. Database Operations
 
 ## Databases
 
@@ -277,7 +281,7 @@ __Step 2:__ Create table using SQL Command
 DROP TABLE CUSTOMER;
 ```
 
-### DB Queries
+## DB Queries
 
 We can interact with our database using various SQL query statements.
 
@@ -290,9 +294,10 @@ Address Table
 | 123 Flora Road      | Garden Way       | LSoh@outlook.com   | Singapore | 503984      |
 | 22 Lin Hua Road     | NULL             | LindaS@outlook.com | China     | 345982      |
 
-__Retrieve ALL data__:
+### SELECT
+### Retrieve __ALL__ data:
 > [ ] indicates it is optional and ‘…’ indicates that there maybe multiple pairs of ‘ColumnName = ColumnValue’
-> 
+
 > Using asterisks (*) selects data in all columns
 
 Syntax: `SELECT <attribute_name> FROM <table_name> [WHERE <condition>]`
@@ -301,13 +306,13 @@ Syntax: `SELECT <attribute_name> FROM <table_name> [WHERE <condition>]`
 SELECT * FROM Address;
 ```
 
-__Retrieve data of CERTAIN criteria__:
+### Retrieve Data of __CERTAIN__ Criteria:
 
 ```sql
 SELECT Email FROM Address WHERE Postal_Code=503984;
 ```
 
-__Remove DUPLICATES from data____:
+### Remove __DUPLICATES__ from Data:
 
 Syntax: `SELECT DISTINCT <attribute_name> FROM <table_name>`
 
@@ -315,7 +320,7 @@ Syntax: `SELECT DISTINCT <attribute_name> FROM <table_name>`
 SELECT DISTINCT Country from Address;
 ```
 
-__Sorting data__:
+### Sorting Data:
 
 Syntax: `SELECT <attribute_name> FROM <table_name> ORDER BY <attribute_name> ASC`
 
@@ -325,7 +330,7 @@ Syntax: `SELECT <attribute_name> FROM <table_name> ORDER BY <attribute_name> ASC
 SELECT Country FROM Address ORDER BY Country DESC;
 ```
 
-__Limiting rows of data__:
+### Limiting Rows of Data:
 
 Syntax: `SELECT <attribute_name> FROM <table_name> LIMIT <n>`
 
@@ -334,3 +339,9 @@ Syntax: `SELECT <attribute_name> FROM <table_name> LIMIT <n>`
 ```sql
 SELECT Country FROM Address LIMIT 3;
 ```
+
+### INSERT
+
+### UPDATE
+
+### DELETE

@@ -5,12 +5,12 @@
 1. [Databases](#databases)
     - DBMS
     - Basic Concepts
-2. Relational Model
+2. [Relational Model](#relational-model)
     - Relation
     - Attribute
     - Creating a Relational DB
     - Self-Check Quiz
-3. Types of Keys
+3. [Types of Keys](#types-of-keys-in-relational-model)
     - Candidate Key
     - Self-Check Quiz
     - Primary Key

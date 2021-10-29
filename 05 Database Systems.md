@@ -251,9 +251,7 @@ __Step 1:__ Identify Data Types
 
 __Step 2:__ Understand the Syntax
 
-Syntax:
-
-> `CREATE TABLE <table_name> (column_definition_list) PRIMARY KEY (column_name_list)`
+Syntax: `CREATE TABLE <table_name> (column_definition_list) PRIMARY KEY (column_name_list)`
 
 __Step 3:__ Create table using SQL Command
 
@@ -272,9 +270,7 @@ PRIMARY KEY (EMAIL));
 
 __Step 1:__ Understand the Syntax
 
-Syntax: 
-
-> `DROP TABLE <table_name>;`
+Syntax: `DROP TABLE <table_name>;`
 
 __Step 2:__ Create table using SQL Command
 

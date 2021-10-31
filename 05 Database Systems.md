@@ -25,7 +25,6 @@
     - [UPDATE](#update)
     - [DELETE](#delete)
     - [Table Joins](#table-joins)
-7. Database Operations
 
 ## Databases
 

@@ -80,7 +80,7 @@ console.log(student1.age);
 console.log(student1.course);
 
 // Converting JS object to string
-const studentStr = SON.stringify(student1);
+const studentStr = JSON.stringify(student1);
 ```
 
 ## Creating a Node Server

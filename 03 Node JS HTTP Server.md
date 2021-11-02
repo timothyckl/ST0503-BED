@@ -96,7 +96,7 @@ To build our own web server, a few built-in Node JS modules are needed:
 
 ### HTTP Module
 
-Supports the ```createServer()``` function which takes a callback with request and response objects
+Supports the `createServer()` function which takes a callback with request and response objects
 
 1. The request object represents the HTTP request and contains properties for the request query string, parameters, body, HTTP headers, etc.
 

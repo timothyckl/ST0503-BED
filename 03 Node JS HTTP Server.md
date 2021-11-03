@@ -151,6 +151,8 @@ const server = http.createServer((req, res) => {
         });
     }
     else {
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/html');
         fileUrl='/error.html';
         filePath = path.resolve('./public'+fileUrl);
         fs.createReadStream(filePath).pipe(res);

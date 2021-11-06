@@ -88,10 +88,10 @@ We will create a RESTful API based on the "user" table structure.
 
 MVC is an architectural pattern consisting of three parts: Model, View, Controller.
 
-**Model**: Handles data logic / interaction with database
+**Model**: Handles data logic / interaction with database.
 
-**View**: It displays the information from the model to the user
+**View**: It displays the information from the model to the user.
 
-**Controller**: It controls the data flow into a model object and updates the view whenever data changes
+**Controller**: It controls the data flow into a model object and updates the view whenever data changes.
 
 See: [Everything you need to know about MVC architecture](https://towardsdatascience.com/everything-you-need-to-know-about-mvc-architecture-3c827930b4c1)

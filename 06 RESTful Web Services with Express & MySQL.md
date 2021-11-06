@@ -11,7 +11,7 @@
 
 ## RESTful Web Services with Express and MySQL
 
-We can integrate web services with data persistent solutions to develop application's with backend systems to store information.
+We can integrate web services with data persistent solutions to develop applications with backend systems to store information.
 
 
 ## Setting Up Persistent Storage

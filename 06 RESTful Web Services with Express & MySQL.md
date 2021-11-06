@@ -300,6 +300,8 @@ app.route('/api/user').post((req, res) => {
 module.exports = app;
 ```
 
+Reference: [Express Routing](https://expressjs.com/en/guide/routing.html)
+
 ### Creating Main Server
 
 ```js    

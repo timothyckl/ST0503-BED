@@ -14,7 +14,7 @@
 We can integrate web services with data persistent solutions to develop applications with backend systems to store information.
 
 
-## Setting Up Persistent Storage
+### Setting Up Persistent Storage
 
 Before creating web services to handle CRUD operations on our database, we will have to set it up first. In this case, we will be using MySQL.
 
@@ -71,3 +71,27 @@ Enter data into your table and click "Apply".
 In the "Apply SQL Script to Database" page, select "Apply" and "Finish".
 
 Congrats! Now we have necessary data and table in our MySql database.
+
+## RESTful APIs
+
+We will create a RESTful API based on the "user" table structure.
+
+|Route|HTTP Method|POST Body|Result|
+|-----|-----------|---------|------|
+|/user|GET|N/A|Retrieve all users|
+|/user/:id|GET|N/A|Retrieve single user|
+|/user|POST|JSON String|Insert new user|
+|/user/:id|PUT|JSON String|Update user|
+|/user/:id|DELETE|none|Delete single user|
+
+### Model View Controller
+
+MVC is an architectural pattern consisting of three parts: Model, View, Controller.
+
+**Model**: Handles data logic / interaction with database
+
+**View**: It displays the information from the model to the user
+
+**Controller**: It controls the data flow into a model object and updates the view whenever data changes
+
+See: [Everything you need to know about MVC architecture](https://towardsdatascience.com/everything-you-need-to-know-about-mvc-architecture-3c827930b4c1)

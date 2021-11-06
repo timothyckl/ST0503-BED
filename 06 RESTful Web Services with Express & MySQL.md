@@ -234,7 +234,9 @@ node server.js
 To test our API, we can either use Postman or a web browser
 
 Using Chrome:
+
 ![](https://i.imgur.com/ByFoE8Q.png)
 
 Using Postman:
+
 ![](https://i.imgur.com/qTphtrt.png)

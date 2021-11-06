@@ -1,3 +1,5 @@
+# __ST0503 BED__
+
 06 RESTful Web Services w/ Express & MySQL
 
 ## Table of Contents
@@ -88,10 +90,151 @@ We will create a RESTful API based on the "user" table structure.
 
 MVC is an architectural pattern consisting of three parts: Model, View, Controller.
 
-**Model**: Handles data logic / interaction with database.
+**Model**: Handles data logic / interaction with database
 
-**View**: It displays the information from the model to the user.
+**View**: It displays the information from the model to the user
 
-**Controller**: It controls the data flow into a model object and updates the view whenever data changes.
+**Controller**: It controls the data flow into a model object and updates the view whenever data changes
 
 See: [Everything you need to know about MVC architecture](https://towardsdatascience.com/everything-you-need-to-know-about-mvc-architecture-3c827930b4c1)
+
+## Creating DB Connection w/ mysql Package
+
+We will be structuring our code using the MVC design pattern. As web services are meant to be consumed by an external view layer, we will only create a controller and model layer for this project.
+
+File Structure:
+
+```
+MYFIRSTWS/
+┣ controller/
+┃ ┗ app.js
+┣ model/
+┃ ┣ db-config.js
+┃ ┗ user.js
+┗ server.js
+```
+
+### Setting Up Workspace
+
+Initialize package.json
+
+```
+npm init -y
+```
+
+### Install Packages
+
+```
+npm install mysql
+npm install body-parser
+npm install express
+```
+
+### Defining DB Connection (Model Layer)
+
+```js 
+// db-config.js
+const mysql = require('mysql');
+
+// Connection settings for MySQL database
+const dbConnect = {
+    getConnection: () => {
+        const cnx = mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "root", // enter your own password
+            database: "furniture_store"
+        });
+        return cnx;
+    }
+};
+
+module.exports = dbConnect;
+```
+
+### DB Interactions
+
+We will proceed to design our database calls to access data in the furniture_store schema.
+
+> **Note**: Password should **never** be stored in plain text and retrieved in real life.
+
+#### Selecting User Data
+```js    
+// user.js
+const db = require('./db-config');
+
+const userDB = {
+    getUser: (userid, callback) => {
+        const cnx = db.getConnection();
+
+        cnx.connect(err => {
+            if (err) {
+                console.log(err);
+                return callback(err);
+            }
+            console.log("Connected to database!");
+
+            const selectUserQuery = "SELECT * FROM ?? WHERE ?? = ?";
+            const values = ["user", "userid", userid];
+
+            cnx.query(selectUserQuery, values, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    return callback(err);
+                }
+                console.log(data);
+                return callback(null, data);
+            });
+        });
+    },
+};
+
+module.exports = userDB;
+```
+
+### Defining Routes (Control Layer)
+
+```js    
+// app.js
+const express = require('express');
+const app = express();
+const user = require("../model/user");
+
+app.get('/api/user/:userid', (req, res) => {
+    const id = req.params.userid;
+
+    user.getUser(id, (err, data) => {
+        if (err) {
+            res.status(500).json({ msg: err });
+        } else {
+            res.json({ data: data });
+        }
+    });
+});
+
+module.exports = app;
+```
+
+### Creating Main Server
+
+```js    
+// server.js
+const app = require('./controller/app');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`));
+```
+
+Finally, we can run our server
+
+```
+node server.js
+```
+
+To test our API, we can either use Postman or a web browser
+
+Using Chrome:
+![](https://i.imgur.com/ByFoE8Q.png)
+
+Using Postman:
+![](https://i.imgur.com/qTphtrt.png)

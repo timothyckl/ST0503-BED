@@ -1,5 +1,3 @@
-# __ST0503 BED__
-
 06 RESTful Web Services w/ Express & MySQL
 
 ## Table of Contents

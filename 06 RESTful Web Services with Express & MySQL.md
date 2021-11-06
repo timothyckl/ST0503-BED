@@ -6,7 +6,7 @@
     - Setting Up Persistent Storage
 2. [RESTful APIs](#restful-apis)
     - Model View Controller
-3. [Creating DB Connection w/ mysql Package](#creating-db-connection-w/-mysql-package)
+3. [Creating DB Connection w/ mysql Package](#creating-db-connection-with-mysql-package)
     - DB Queries w/ HTTPS Methods
 
 ## RESTful Web Services with Express and MySQL
@@ -96,7 +96,7 @@ MVC is an architectural pattern consisting of three parts: Model, View, Controll
 
 See: [Everything you need to know about MVC architecture](https://towardsdatascience.com/everything-you-need-to-know-about-mvc-architecture-3c827930b4c1)
 
-## Creating DB Connection w/ mysql Package
+## Creating DB Connection with mysql Package
 
 We will be structuring our code using the MVC design pattern. As web services are meant to be consumed by an external view layer, we will only create a controller and model layer for this project.
 
@@ -156,7 +156,6 @@ We will proceed to design our database calls to access data in the furniture_sto
 
 > **Note**: Password should **never** be stored in plain text and retrieved in real life.
 
-#### Selecting User Data
 ```js    
 // user.js
 const db = require('./db-config');
@@ -172,7 +171,7 @@ const userDB = {
             }
             console.log("Connected to database!");
 
-            const selectUserQuery = "SELECT * FROM ?? WHERE ?? = ?";
+            const selectUserQuery = "SELECT * FROM ?? WHERE ?? = ?;";
             const values = ["user", "userid", userid];
 
             cnx.query(selectUserQuery, values, (err, data) => {
@@ -182,6 +181,52 @@ const userDB = {
                 }
                 console.log(data);
                 return callback(null, data);
+            });
+        });
+    },
+    addUser: (username, email, role, password, callback) => {
+        var cnx = db.getConnection();
+        
+        cnx.connect(err => {
+            if (err) {
+                console.log(err);
+                return callback(err);
+            }
+            console.log("Connected to database!");
+
+            const insertUserQuery = "INSERT INTO ?? (??, ??, ??, ??) VALUES (?, ?, ?, ?);";
+            const values = ["user", "username", "email", "role", "password", username, email, role, password];
+
+            cnx.query(insertUserQuery, values, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    return callback(err);
+                }
+                console.log(`${data.affectedRows} rows created`);
+                return callback(null, data.affectedRows); // Return number of record(s) inserted
+            });
+        });
+    },
+    updateUse: (email, password, userid, callback) => {
+        var cnx = db.getConnection();
+        
+        cnx.connect(err => {
+            if (err) {
+                console.log(err);
+                return callback(err);
+            }
+            console.log("Connected to database!");
+
+            const updateUserQuery = "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?;";
+            const values = ["user", "email", email, "password", password, "userid", userid];
+
+            cnx.query(updateUserQuery, values, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    return callback(err);
+                }
+                console.log(`${data.affectedRows} rows updated`);
+                return callback(null, data.affectedRows);
             });
         });
     },
@@ -197,8 +242,13 @@ module.exports = userDB;
 const express = require('express');
 const app = express();
 const user = require("../model/user");
+const bodyParser = require('body-parser');
+const urlencodedparser = bodyParser.urlencoded({ extended: false });
 
-app.get('/api/user/:userid', (req, res) => {
+app.use(bodyParser()); // parse application/json
+app.use(urlencodedparser); // parse application/x-www-form-urlencoded
+
+app.route('/api/user/:userid').get((req, res) => {
     const id = req.params.userid;
 
     user.getUser(id, (err, data) => {
@@ -206,6 +256,43 @@ app.get('/api/user/:userid', (req, res) => {
             res.status(500).json({ msg: err });
         } else {
             res.json({ data: data });
+        }
+    });
+}).put((req, res) => {
+    const password = req.body.password;
+    const email = req.body.email;
+    const id = req.params.userid;
+
+    user.updateUser(email, password, id, (err, data) => {
+        if (err) {
+            res.status(err.statusCode).json({ msg: err });
+        } else {
+            res.status(201).json({ msg: `${data} record updated` });
+        }
+    });
+}).delete((req, res) => {
+    const id = req.params.userid;
+
+    user.deleteUser(id, (err, data) => {
+        if (err) {
+            res.status(500).json({ msg: err });
+        } else {
+            res.status(200).json({ msg: `${data} record deleted` });
+        }
+    })
+});
+
+app.route('/api/user').post((req, res) => {
+    const username = req.body.username;
+    const email = req.body.email;
+    const role = req.body.role;
+    const password = req.body.password;
+
+    user.addUser(username, email, role, password, (err, data) => {
+        if (err) {
+            res.status(err.statusCode).json({ msg: err });
+        } else {
+            res.status(201).json({ msg: `${data} record created` });
         }
     });
 });
@@ -237,4 +324,20 @@ Using Chrome:
 
 Using Postman:
 
+**GET Method** \
 ![](https://i.imgur.com/qTphtrt.png)
+
+**Post Method** \
+![](https://i.imgur.com/vxo78IM.png)
+
+**PUT Method** \
+![](https://i.imgur.com/QWyRxVA.png)
+
+**DELETE Method** \
+![](https://i.imgur.com/wrVCHOt.png)
+
+## Furniture App (Extended Exercise)
+
+beep boop ima get this done like in the future...
+
+

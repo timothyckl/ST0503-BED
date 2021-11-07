@@ -18,7 +18,7 @@ We can integrate web services with data persistent solutions to develop applicat
 
 Before creating web services to handle CRUD operations on our database, we will have to set it up first. In this case, we will be using MySQL.
 
-> __Install Link for Windows__: [https://dev.mysql.com/downloads/installer/](https://dev.mysql.com/downloads/installer/)
+> __MySQL Workbench Install (Windows)__: [https://dev.mysql.com/downloads/installer/](https://dev.mysql.com/downloads/installer/)
 
 __User Table Fields__ 
 
@@ -56,7 +56,7 @@ In the "new_table" page, define the table name and columns and select "Apply".
 
 In the "Apply SQL Script to Database" page, select "Apply" and "Finish".
 
-Your new table can be vied in the "Schemas" tab under "furniture_store" and "Tables".
+Your new table can be viewed in the "Schemas" tab under "furniture_store" and "Tables".
 
 ![](https://i.imgur.com/OCCNDF3.png)
 
